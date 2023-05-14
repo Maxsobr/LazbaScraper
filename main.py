@@ -111,13 +111,43 @@ class Chel:
     def __str__(self):
         return f"Name: {self.name}, Email: {self.email}, Results: {self.dictResults}"
 
+    def clean(self):
+        newDict = {}
+        for key, value in self.dictResults.items():
+            if key != "Догматизм":
+                newDict[key] = value
+            if key == "Маскулинность - феминность":
+                newDict["Маскулинность / феминность"] = value
+
+        self.dictResults = newDict
+        # newDict = {}
+        # for key, value in self.dictResults[0].items():
+        #     if "Догматизм" in self.dictResults:
+        #         self.dictResults[0].pop("Догматизм")
+        #     if "Маскулинность - феминность" in self.dictResults:
+        #         self.dictResults[0]["Маскулинность / феминность"] = self.dictResults[0].pop("Маскулинность - феминность")
+        # #
+        #     if key != "Догматизм":
+        #         newDict[key] = value
+        #     elif key == "Маскулинность - феминность":
+        #         newDict.pop("Маскулинность - феминность")
+        #         newDict["Маскулинность / феминность"] = value
+        #
+        # self.dictResults = newDict
+        #
+        # print(newDict)
+
+        # if "Догматизм" in self.dictResults:
+        #     del self.dictResults.pop()["Догматизм"]
+        # if "Маскулинность - феминность" in self.dictResults:
+        #     self.dictResults["Маскулинность / феминность"] = self.dictResults.pop("Маскулинность - феминность")
 
 ChelList = []
 
 for index, row in df.iterrows():
-    resultDict = []
+    resultDict = {}
     for sheetIndex in range(7):
-        resultDict.append(evaluateScore(sheetIndex, file_path, df, startColumnIndex, index))
+        resultDict.update(evaluateScore(sheetIndex, file_path, df, startColumnIndex, index))
 
     nameSurname = df.loc[index, nameColumn]
     print(nameSurname ,"\n")
@@ -128,6 +158,7 @@ for index, row in df.iterrows():
     ChelList.append(Chel(nameSurname, email, resultDict))
 
 for i in ChelList:
+    i.clean()
     print(i)
 
 
