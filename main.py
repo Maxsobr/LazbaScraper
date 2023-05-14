@@ -10,39 +10,39 @@ nameColumn = "Укажи здесь свои данные, чтобы мы мо�
 
 RowIndex = 0
 # Access a cell value by column name and index
-nameSurname = df.loc[RowIndex, nameColumn]
+# nameSurname = df.loc[RowIndex, nameColumn]
 
 # Print the cell value
-print(nameSurname)
+# print(nameSurname)
 
 emailColumn = "Укажи здесь свои данные, чтобы мы могли отправить тебе результаты. [Email адрес]"
 
-email = df.loc[RowIndex, emailColumn]
+# email = df.loc[RowIndex, emailColumn]
 
 
 
 # Print the cell value
-print(email)
+# print(email)
 
 firstQuestion = "Если кто-то захочет вас прогнать, вы почувствуете необходимость что-то предпринять в связи с этим?"
 lastQuestion = "Вы любили в детстве играть с оружием? "
 
 
-firstAnswer = df.loc[RowIndex, firstQuestion]
+# firstAnswer = df.loc[RowIndex, firstQuestion]
 
 
 # Print the cell value
-print(firstAnswer)
+# print(firstAnswer)
 
 startColumnIndex = df.columns.get_loc(firstQuestion)
 
 endColumnIndex = df.columns.get_loc(lastQuestion)
-
-i = startColumnIndex
-while i<= endColumnIndex :
-    cell_value = df.iloc[RowIndex, i]
-    print(df.columns[i] + cell_value + "\n")
-    i += 1
+#
+# i = startColumnIndex
+# while i<= endColumnIndex :
+#     cell_value = df.iloc[RowIndex, i]
+#     print(df.columns[i] + cell_value + "\n")
+#     i += 1
 
 
 # Specify the file path
@@ -103,12 +103,13 @@ def evaluateScore(sheetIndex, file_path, resultSheet,startColumnIndex, ChelRowIn
     #     print(df.columns[i] + cell_value + "\n")
 
 class Chel:
-    def __init__(self, name, dictResults):
+    def __init__(self, name, email, dictResults):
         self.name = name
+        self.email = email
         self.dictResults = dictResults
 
     def __str__(self):
-        return f"Name: {self.name}, Results: {self.dictResults}"
+        return f"Name: {self.name}, Email: {self.email}, Results: {self.dictResults}"
 
 
 ChelList = []
@@ -122,8 +123,9 @@ for index, row in df.iterrows():
     print(nameSurname ,"\n")
     print(resultDict)
     print("-" * 30)
+    email = df.loc[RowIndex, emailColumn]
 
-    ChelList.append(Chel(nameSurname,resultDict))
+    ChelList.append(Chel(nameSurname, email, resultDict))
 
 for i in ChelList:
     print(i)
