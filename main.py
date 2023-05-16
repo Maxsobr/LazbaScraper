@@ -1,8 +1,7 @@
 
 
 import pandas as pd
-
-
+import GenerateComments as gn
 # Read the CSV file into a DataFrame
 df = pd.read_csv('Test.csv')
 
@@ -161,7 +160,8 @@ for i in ChelList:
     i.clean()
     print(i)
 
-
+for i in ChelList:
+    gn.generateComments(i)
 # Access a cell value by column name and index
 
 
