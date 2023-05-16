@@ -36,7 +36,6 @@ def generateComments(chel):
             before = int(split_parts[0])
             after = int(split_parts[1])
 
-            if chel.
 
             print(before)
             print(after)
