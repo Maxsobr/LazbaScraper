@@ -2,6 +2,7 @@
 
 import pandas as pd
 import GenerateComments as gn
+import ChartGeneration as chartGeneration
 # Read the CSV file into a DataFrame
 df = pd.read_csv('Test.csv')
 
@@ -113,10 +114,12 @@ class Chel:
     def clean(self):
         newDict = {}
         for key, value in self.dictResults.items():
-            if key != "Догматизм":
-                newDict[key] = value
+
             if key == "Маскулинность - феминность":
                 newDict["Маскулинность / феминность"] = value
+            elif key != "Догматизм":
+                newDict[key] = value
+
 
         self.dictResults = newDict
         # newDict = {}
@@ -160,8 +163,11 @@ for i in ChelList:
     i.clean()
     print(i)
 
-for i in ChelList:
-    gn.generateComments(i)
+# for i in ChelList:
+#     gn.generateComments(i)
+
+
+chartGeneration.testChart(ChelList[0])
 # Access a cell value by column name and index
 
 
