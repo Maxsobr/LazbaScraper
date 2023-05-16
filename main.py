@@ -164,10 +164,12 @@ for i in ChelList:
     print(i)
 
 for i in ChelList:
-     gn.generateComments(i)
+     print(gn.generateComments(i))
 
 
 chartGeneration.testChart(ChelList[0])
+
+
 # Access a cell value by column name and index
 
 
