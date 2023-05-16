@@ -152,9 +152,9 @@ for index, row in df.iterrows():
         resultDict.update(evaluateScore(sheetIndex, file_path, df, startColumnIndex, index))
 
     nameSurname = df.loc[index, nameColumn]
-    print(nameSurname ,"\n")
-    print(resultDict)
-    print("-" * 30)
+    # print(nameSurname, "\n")
+    # print(resultDict)
+    # print("-" * 30)
     email = df.loc[RowIndex, emailColumn]
 
     ChelList.append(Chel(nameSurname, email, resultDict))
@@ -163,8 +163,8 @@ for i in ChelList:
     i.clean()
     print(i)
 
-# for i in ChelList:
-#     gn.generateComments(i)
+for i in ChelList:
+     gn.generateComments(i)
 
 
 chartGeneration.testChart(ChelList[0])
