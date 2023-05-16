@@ -1,12 +1,12 @@
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 def testChart(chel):
     print(chel.name)
     for category, score in chel.dictResults.items():
         print(category, ": ", score)
 
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 
 def draw_chart(chel):
