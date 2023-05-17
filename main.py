@@ -7,6 +7,13 @@ import ChartGeneration as chartGeneration
 import ending as end
 import ploting as plott
 from docx import Document
+from docx.shared import Pt
+from docx.shared import Inches
+
+
+import re
+
+
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv('Test.csv')
@@ -207,12 +214,47 @@ for i in ChelList:
 
 
 
+# путь к папке с документами
+path = 'resultsDOCX'
+
+search_path = "resultsPng"
 
 
 
+# обходим все файлы в папке
+for filename in os.listdir(path):
+    # проверяем, что это Word-файл
+    if filename.endswith('.docx'):
+        file_path = os.path.join(path, filename)
+        doc = Document(file_path)
+
+        # Создаем новый документ, в который будем записывать отформатированный текст
+        new_doc = Document()
+
+        file2 = os.path.splitext(filename)[
+                    0] + '.png'
+        print(file2)
+
+        search_file_path = os.path.join(search_path, file2)
+        if os.path.exists(search_file_path):
+            new_doc.add_picture(search_file_path)
 
 
+        for para in doc.paragraphs:
+            # Разделяем текст на абзацы по двум переходам на новую строчку
+            paragraphs = re.split('\n\n|\n \n|\n\n |\n \n | \n \n |  ', para.text)
 
+            for p in paragraphs:
+                # Если абзац не пустой, добавляем его в новый документ с отступом
+                if p.strip():
+                    new_para = new_doc.add_paragraph()
+                    new_para.paragraph_format.first_line_indent = Pt(36)  # Примерно соответствует табуляции.
+                    new_para.add_run(p)
+
+        savePath = os.path.join(path, filename)
+
+        # сохраняем изменения
+        new_doc.save(savePath)
 
 
 
