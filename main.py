@@ -3,6 +3,7 @@
 import pandas as pd
 import GenerateComments as gn
 import ChartGeneration as chartGeneration
+import ending as end
 from docx import Document
 
 # Read the CSV file into a DataFrame
@@ -168,13 +169,23 @@ for i in ChelList:
 
 
 chartGeneration.testChart(ChelList[0])
-
+#
+# for i in ChelList:
+#     resultString = gn.generateComments(i)
+#     end.endString(resultString, i)
+#
 
 # Adding a paragraph
-
+#
 for i in ChelList:
+    resultString = gn.generateComments(i)
+
+    resultString += end.endString(i)
+
     document = Document()
-    document.add_paragraph(gn.generateComments(i))
+
+    # if
+    document.add_paragraph(resultString)
 
     output_filename = '{}.docx'.format(
         i.name)  # Example with string formatting
@@ -185,12 +196,6 @@ for i in ChelList:
 
 
 
-
-
-# Adding an image
-
-
-# Access a cell value by column name and index
 
 
 
