@@ -2,7 +2,7 @@ import pandas as pd
 
 def generateComments(chel):
     stringResult = ""
-    stringResult += "Здравствуй, {}!".format(chel.name)
+    stringResult += "Здравствуй, {}!\n\n".format(chel.name)
     print(stringResult)
 
     excel_file = pd.ExcelFile("CommentFilter.xlsx")

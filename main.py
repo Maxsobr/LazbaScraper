@@ -1,8 +1,10 @@
-
+# -*- coding: utf-8 -*-
 
 import pandas as pd
 import GenerateComments as gn
 import ChartGeneration as chartGeneration
+from docx import Document
+
 # Read the CSV file into a DataFrame
 df = pd.read_csv('Test.csv')
 
@@ -25,7 +27,7 @@ emailColumn = "Укажи здесь свои данные, чтобы мы мо
 # print(email)
 
 firstQuestion = "Если кто-то захочет вас прогнать, вы почувствуете необходимость что-то предпринять в связи с этим?"
-lastQuestion = "Вы любили в детстве играть с оружием? "
+# lastQuestion = "Вы любили в детстве играть с оружием"
 
 
 # firstAnswer = df.loc[RowIndex, firstQuestion]
@@ -36,7 +38,7 @@ lastQuestion = "Вы любили в детстве играть с оружи
 
 startColumnIndex = df.columns.get_loc(firstQuestion)
 
-endColumnIndex = df.columns.get_loc(lastQuestion)
+# endColumnIndex = df.columns.get_loc(lastQuestion)
 #
 # i = startColumnIndex
 # while i<= endColumnIndex :
@@ -163,11 +165,29 @@ for i in ChelList:
     i.clean()
     print(i)
 
-for i in ChelList:
-     print(gn.generateComments(i))
 
 
 chartGeneration.testChart(ChelList[0])
+
+
+# Adding a paragraph
+
+for i in ChelList:
+    document = Document()
+    document.add_paragraph(gn.generateComments(i))
+
+    output_filename = '{}.docx'.format(
+        i.name)  # Example with string formatting
+
+    document.save(output_filename)
+
+
+
+
+
+
+
+# Adding an image
 
 
 # Access a cell value by column name and index
