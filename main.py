@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 
 import pandas as pd
 import GenerateComments as gn
 import ChartGeneration as chartGeneration
 import ending as end
+import ploting as plott
 from docx import Document
 
 # Read the CSV file into a DataFrame
@@ -168,7 +170,7 @@ for i in ChelList:
 
 
 
-chartGeneration.testChart(ChelList[0])
+# chartGeneration.testChart(ChelList[0])
 #
 # for i in ChelList:
 #     resultString = gn.generateComments(i)
@@ -184,13 +186,22 @@ for i in ChelList:
 
     document = Document()
 
+    filename = plott.boxgraph(i)
+    document.add_picture(filename)
     # if
     document.add_paragraph(resultString)
+    directory = "resultsDOCX"
+
+    # Create directory if it doesn't exist
+    os.makedirs(directory, exist_ok=True)
 
     output_filename = '{}.docx'.format(
         i.name)  # Example with string formatting
 
-    document.save(output_filename)
+    # Full path to the file
+    filepath = os.path.join(directory, output_filename)
+
+    document.save(filepath)
 
 
 
