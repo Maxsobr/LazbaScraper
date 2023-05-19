@@ -46,16 +46,25 @@ def endString( chel):
             column_name = dataframe.columns[1]
             recomendationList = dataframe.iloc[0].values.tolist()
 
-    # low
-    if (lowPointsCounter == 2 and highStimul) or lowPointsCounter >= 3 :
-        workingString += recomendationList[1]
-
-    # norm
-    if lowPointsCounter <= 2 or (lowPointsCounter == 1 and highStimul):
-        workingString += recomendationList[2]
+    print(chel.dictResults)
+    print(chel.name," low: ", lowPointsCounter, "high stimul? ", highStimul)
 
     # high
     if lowPointsCounter == 1 or highStimul:
         workingString += recomendationList[3]
+        print("high")
+
+    # low
+    elif (lowPointsCounter == 2 and highStimul) or lowPointsCounter >= 3 :
+        workingString += recomendationList[1]
+        print("Low")
+
+    # norm
+    elif lowPointsCounter <= 2 or (lowPointsCounter == 1 and highStimul):
+        workingString += recomendationList[2]
+        print("mid")
+    else:
+        print("something wrong")
+
 
     return workingString
