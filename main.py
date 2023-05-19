@@ -248,7 +248,7 @@ for filename in os.listdir(path):
                 # Если абзац не пустой, добавляем его в новый документ с отступом
                 if p.strip():
                     new_para = new_doc.add_paragraph()
-                    new_para.paragraph_format.first_line_indent = Pt(36)  # Примерно соответствует табуляции.
+                    # new_para.paragraph_format.first_line_indent = Pt(36)  # Примерно соответствует табуляции.
                     new_para.add_run(p)
 
         savePath = os.path.join(path, filename)
