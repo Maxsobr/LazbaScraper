@@ -18,7 +18,7 @@ import re
 # Read the CSV file into a DataFrame
 df = pd.read_csv('Test.csv')
 
-nameColumn = "Укажи здесь свои данные, чтобы мы могли отправить тебе результаты. [Имя и фамилия]"
+nameColumn = "Укажи своё имя и фамилию"
 
 RowIndex = 0
 # Access a cell value by column name and index
@@ -27,7 +27,7 @@ RowIndex = 0
 # Print the cell value
 # print(nameSurname)
 
-emailColumn = "Укажи здесь свои данные, чтобы мы могли отправить тебе результаты. [Email адрес]"
+emailColumn = "Укажи свой E-Mail"
 
 # email = df.loc[RowIndex, emailColumn]
 
@@ -36,7 +36,7 @@ emailColumn = "Укажи здесь свои данные, чтобы мы мо
 # Print the cell value
 # print(email)
 
-firstQuestion = "Если кто-то захочет вас прогнать, вы почувствуете необходимость что-то предпринять в связи с этим?"
+firstQuestion = "Если кто-то захочет вас прогнать, вы почувствуете необходимость что-то предпринять в связи с этим?"
 # lastQuestion = "Вы любили в детстве играть с оружием"
 
 
