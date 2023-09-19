@@ -22,6 +22,7 @@ def generateComments(chel):
             dataframe = pd.read_excel(excel_file, sheet_name)
 
             # generalRecommendation
+            # ИМЯ ПЕРВОЙ колонки
             column_name = dataframe.columns[1]
 
 
@@ -43,8 +44,11 @@ def generateComments(chel):
             # get the first row
             first_row = dataframe.iloc[0]
             second_row = dataframe.iloc[1]
+            print(second_row)
 
-            print("Lennnn", len(first_row))
+            print(first_row)
+
+            # print("Lennnn", len(first_row))
 
             # go through all cells in the first row
             for i in range(1, len(first_row)):
@@ -60,7 +64,7 @@ def generateComments(chel):
                 print("currrentKey", chel.dictResults[matching_key])
                 print(before, ";", after)
 
-                if chel.dictResults[matching_key] >= before and chel.dictResults[matching_key] <= chel.dictResults[matching_key]:
+                if chel.dictResults[matching_key] >= before and chel.dictResults[matching_key] <= after:
                     # generate comment
                     stringResult += second_row[i]
 

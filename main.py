@@ -7,7 +7,7 @@ import ChartGeneration as chartGeneration
 import ending as end
 import ploting as plott
 from docx import Document
-from docx.shared import Pt
+from docx.shared import Pt, RGBColor
 from docx.shared import Inches
 
 
@@ -37,7 +37,7 @@ emailColumn = "Укажи свой E-Mail"
 # print(email)
 
 firstQuestion = "Если кто-то захочет вас прогнать, вы почувствуете необходимость что-то предпринять в связи с этим?"
-# lastQuestion = "Вы любили в детстве играть с оружием"
+# lastQuestion = "Вы любили в детстве играть с оружием?"
 
 
 # firstAnswer = df.loc[RowIndex, firstQuestion]
@@ -231,6 +231,11 @@ for filename in os.listdir(path):
         # Создаем новый документ, в который будем записывать отформатированный текст
         new_doc = Document()
 
+        style = new_doc.styles['Normal']
+        font = style.font
+        font.name = 'Evolventa'
+        font.size = Pt(13)
+
         file2 = os.path.splitext(filename)[
                     0] + '.png'
         print(file2)
@@ -249,7 +254,9 @@ for filename in os.listdir(path):
                 if p.strip():
                     new_para = new_doc.add_paragraph()
                     # new_para.paragraph_format.first_line_indent = Pt(36)  # Примерно соответствует табуляции.
-                    new_para.add_run(p)
+                    run = new_para.add_run(p)
+                    new_para.style = style
+                    run.font.color.rgb = RGBColor(255, 255, 255)
 
         savePath = os.path.join(path, filename)
 
